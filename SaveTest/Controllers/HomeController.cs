@@ -35,10 +35,11 @@ namespace SaveTest.Controllers
             //String Not Null Or Empty Try To Save To File
             try
             {
-                System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\Users\\nathan.hutchinson\\Desktop\\SaveTest\\SaveTest\\Full Name Folder\\FullName.txt");
+                string szDir = System.AppDomain.CurrentDomain.BaseDirectory;
+                System.IO.StreamWriter file = new System.IO.StreamWriter(szDir + "\\FullName.txt");
                 file.WriteLine(fullName);
                 file.Close();
-
+                
                 return Json(new
                 {
                     Success = true
