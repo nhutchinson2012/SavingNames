@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<script>
+    function saveFunction()
+    {
+        var fullName = $('#firstName').val() + " " +$('#lastName').val();
+        $('#jointName').val(fullName);
+
+
+    $.ajax({
+        type: "POST",
+        url: '@Url.Action("FullName")',
+        data:{"fullName": fullName},
+        success: function (data)
+        {
+            if (data.Success == true)
+            {
+                alert("Succesfully Saved To Text File");
+            }
+            else
+            {
+                alert("Failed To Save To Text File");
+            }
+            
+        }
+    });
+    }
+</script>
+
+<div>
+    <br />
+    First name:<br>
+    <input type="text" name="firstname" id="firstName" value="">
+    <br />
+    Last name:<br>
+    <input type="text" name="lastname" id="lastName" value="">
+    <br /> 
+    <input type="button" value="Submit/Save" onclick="saveFunction()" />
+    <br /> 
+    <br />
+    <input type="text" name="jointName" id="jointName" value="">
+
+    <!--Controller Function Path-->
+    <input type="hidden" id="hdnFullName" value="@Url.Action("FullName")" /><!--Link To Controller For JavaScript file-->
+</div>
